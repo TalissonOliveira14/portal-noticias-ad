@@ -1,59 +1,75 @@
-# ProjetoForms
+PORTAL DE NOTÍCIAS + FORMULÁRIO (FULL STACK)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.4.
+  Projeto Full Stack desenvolvido com Angular (Standalone) no frontend e Node.js + Express no
+backend, utilizando MongoDB como banco de dados.
+  O sistema consiste em um portal de notícias com autenticação e gerenciamento de conteúdo, além
+de um formulário de contato integrado à API. O projeto segue boas práticas de desenvolvimento
+web moderno, com API REST, separação de responsabilidades e uso de Docker.
 
-## Development server
 
-To start a local development server, run:
+ARQUITETURA DO PROJETO
+- Frontend: Angular (Standalone)
+- Backend: Node.js com Express
+- Banco de Dados: MongoDB
 
-```bash
-ng serve
-```
+  
+TECNOLOGIAS UTILIZADAS
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Frontend:
+Angular, TypeScript, HTML5, SCSS
 
-## Code scaffolding
+Backend:
+Node.js, Express.js, MongoDB, Mongoose, JWT
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Ferramentas:
+Git, GitHub, Docker, NPM, Postman
+FUNCIONALIDADES
 
-```bash
-ng generate component component-name
-```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Portal de Notícias:
+- Listagem de notícias
+- Visualização de notícia por ID
+- Criação, edição e exclusão de notícias (rotas protegidas)
+- Autenticação de usuários via JWT
+  
+Formulário:
+- Envio de formulário de contato
+- Validação de campos obrigatórios
+- Persistência dos dados no banco
+- Listagem dos formulários enviados
+  
+ROTAS DA API
 
-```bash
-ng generate --help
-```
+Autenticação:
+POST /api/auth/register
+POST /api/auth/login
 
-## Building
+Notícias:
+GET /api/news
+GET /api/news/:id
+POST /api/news
+PUT /api/news/:id
+DELETE /api/news/:id
+Formulários:
 
-To build the project run:
+POST /api/formularios
+GET /api/formularios
+VARIÁVEIS DE AMBIENTE
+PORT=3000
+MONGO_URI=sua_string_de_conexao_mongodb
+JWT_SECRET=sua_chave_secreta
 
-```bash
-ng build
-```
+OBSERVAÇÃO SOBRE DIREITOS AUTORAIS
+As notícias exibidas neste sistema são obtidas a partir de fontes públicas relacionadas à
+Assembleia de Deus, com finalidade exclusivamente acadêmica e educacional.
+Este projeto não possui fins comerciais e não reivindica direitos autorais sobre os conteúdos
+apresentados.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+OBJETIVO DO PROJETO
+Projeto desenvolvido para fins acadêmicos e educacionais, com o objetivo de praticar
+desenvolvimento Full Stack, integração entre frontend e backend, uso de API REST e Docker.
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+AUTOR
+Talisson Pereira de Oliveira
+Estudante de Bacharelado em Tecnologia da Informação – UFRN (IMD)
+GitHub: https://github.com/TalissonOliveira14
