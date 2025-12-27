@@ -1,0 +1,101 @@
+<div class="form-container">
+  <h1>Cadastro de Irmão</h1>
+  
+  <form [formGroup]="formularioIrmao" (ngSubmit)="onSubmit()" novalidate>
+    <!-- Campo Nome -->
+    <div class="form-group">
+      <label for="nome">Nome do Irmão *</label>
+      <input 
+        type="text" 
+        id="nome" 
+        formControlName="nome" 
+        placeholder="Digite o nome completo"
+        [class.invalid]="formularioIrmao.get('nome')?.invalid && formularioIrmao.get('nome')?.touched"
+      >
+      @if (formularioIrmao.get('nome')?.errors?.['required'] && formularioIrmao.get('nome')?.touched) {
+        <div class="error-message">
+          Nome é obrigatório
+        </div>
+      }
+      @if (formularioIrmao.get('nome')?.errors?.['minlength']) {
+        <div class="error-message">
+          Mínimo 3 caracteres
+        </div>
+      }
+      @if (formularioIrmao.get('nome')?.errors?.['maxlength']) {
+        <div class="error-message">
+          Máximo 100 caracteres
+        </div>
+      }
+    </div>
+
+    <!-- Campo Congregação -->
+    <div class="form-group">
+      <label for="congregacao">Congregação *</label>
+      <input 
+        type="text" 
+        id="congregacao" 
+        formControlName="congregacao" 
+        placeholder="Nome da congregação"
+        [class.invalid]="formularioIrmao.get('congregacao')?.invalid && formularioIrmao.get('congregacao')?.touched"
+      >
+      @if (formularioIrmao.get('congregacao')?.errors?.['required'] && formularioIrmao.get('congregacao')?.touched) {
+        <div class="error-message">
+          Congregação é obrigatória
+        </div>
+      }
+      @if (formularioIrmao.get('congregacao')?.errors?.['maxlength']) {
+        <div class="error-message">
+          Máximo 50 caracteres
+        </div>
+      }
+    </div>
+
+    <!-- Campo Setor -->
+    <div class="form-group">
+      <label for="setor">Setor *</label>
+      <input 
+        type="text" 
+        id="setor" 
+        formControlName="setor" 
+        placeholder="Setor da congregação"
+        [class.invalid]="formularioIrmao.get('setor')?.invalid && formularioIrmao.get('setor')?.touched"
+      >
+      @if (formularioIrmao.get('setor')?.errors?.['required'] && formularioIrmao.get('setor')?.touched) {
+        <div class="error-message">
+          Setor é obrigatório
+        </div>
+      }
+      @if (formularioIrmao.get('setor')?.errors?.['maxlength']) {
+        <div class="error-message">
+          Máximo 30 caracteres
+        </div>
+      }
+    </div>
+
+    <!-- Checkboxes -->
+    <div class="checkbox-group">
+      <label class="checkbox-container">
+        <input type="checkbox" formControlName="novoConvertido">
+        <span class="checkmark"></span>
+        Novo Convertido
+      </label>
+
+      <label class="checkbox-container">
+        <input type="checkbox" formControlName="evangelico">
+        <span class="checkmark"></span>
+        É Evangélico
+      </label>
+    </div>
+
+    <!-- Botões -->
+    <div class="form-actions">
+      <button type="button" class="btn btn-secondary" (click)="voltar()">
+        Voltar
+      </button>
+      <button type="submit" class="btn btn-primary" [disabled]="formularioIrmao.invalid">
+        Salvar
+      </button>
+    </div>
+  </form>
+</div>

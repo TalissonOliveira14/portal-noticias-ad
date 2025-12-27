@@ -1,0 +1,153 @@
+<div class="home-container">
+  <div class="flames-overlay" aria-hidden="true"></div>
+
+  <header class="main-header">
+    <h1 class="main-title">Página de teste de Talisson</h1>
+    
+    <div class="header-info">
+      <div class="service-hours">
+        <span class="hours">Segunda-feira, 11 de agosto de 2025 </span>
+      </div>
+      <div class="ultima-atualizacao" role="timer" aria-live="polite">
+        <time [attr.datetime]="agora.toISOString()">{{ agora | date:'HH:mm:ss' }}</time>
+      </div>
+    </div>
+
+    <div class="header-highlights">
+      <div class="highlight-tag">
+        <span>NOVO AQUI!</span>
+      </div>
+      <div class="highlight-logo">
+        <span>pesquisa</span>
+      </div>
+    </div>
+
+    <div class="busca-container">
+      <label for="campo-busca" class="sr-only">Buscar notícias</label>
+      <div class="busca">
+        <input 
+          id="campo-busca"
+          type="search" 
+          [(ngModel)]="termoBusca" 
+          placeholder="Buscar notícias..."
+          aria-label="Buscar notícias"
+          (input)="aplicarFiltros()"
+          class="campo-busca"
+        >
+        <button 
+          (click)="limparBusca()" 
+          aria-label="Limpar busca"
+          class="botao-limpar"
+          type="button"
+        >
+          Limpar
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="abas" aria-label="Filtrar notícias">
+    <ul class="abas-lista">
+      @for (aba of abas; track $index) {
+        <li class="abas-item">
+          <button 
+            [class.aba-ativa]="aba === abaAtiva"
+            (click)="selecionarAba(aba)"
+            [attr.aria-current]="aba === abaAtiva ? 'true' : null"
+            class="aba"
+          >
+            {{ aba }}
+          </button>
+        </li>
+      }
+    </ul>
+  </nav>
+
+  <main class="noticias-realtime" aria-live="polite">
+    @if (carregando) {
+      <div class="carregando" aria-busy="true">
+        <div class="spinner" aria-hidden="true"></div>
+        <p class="carregando-texto">Carregando notícias...</p>
+      </div>
+    }
+
+    @if (!carregando && noticiasFiltradas.length === 0) {
+      <div class="sem-noticias">
+        <p class="sem-noticias-texto">Nenhuma notícia encontrada</p>
+      </div>
+    }
+
+    @if (!carregando && noticiasFiltradas.length > 0) {
+      <div class="noticias-container">
+        @for (noticia of noticiasFiltradas; track noticia.id) {
+          <article class="noticia"
+                   [class.noticia-favoritada]="noticia.favoritada"
+                   [class.noticia-urgente]="noticia.urgente">
+            
+            <div class="noticia-cabecalho">
+              <div class="noticia-meta">
+                <time class="noticia-data">{{ noticia.data | date:'dd/MM/yyyy' }}</time>
+                @if (noticia.urgente) {
+                  <span class="noticia-badge">ÚLTIMA HORA</span>
+                }
+                @if (noticia.categoria) {
+                  <span class="noticia-categoria">{{ noticia.categoria }}</span>
+                }
+              </div>
+              <h2 class="noticia-titulo">{{ noticia.titulo }}</h2>
+            </div>
+            
+            <div class="noticia-conteudo" [class.expandido]="noticia.expandida">
+              <p class="noticia-resumo">{{ noticia.resumo }}</p>
+              
+              @if (noticia.expandida) {
+                <div class="conteudo-completo">
+                  <p>{{ noticia.conteudoCompleto }}</p>
+                  @if (noticia.imagemUrl) {
+                    <img [src]="noticia.imagemUrl" alt="Imagem da notícia" class="imagem-noticia">
+                  }
+                </div>
+              }
+            </div>
+            
+            <footer class="noticia-rodape">
+              <span class="noticia-fonte">{{ noticia.fonte || 'ADRN Notícias' }}</span>
+              <div class="noticia-acoes">
+                <button (click)="toggleFavorito(noticia)" 
+                        class="botao-favorito"
+                        [class.favoritada]="noticia.favoritada"
+                        aria-label="Favoritar notícia">
+                  {{ noticia.favoritada ? '★' : '☆' }}
+                </button>
+                <button (click)="toggleExpandir(noticia)" 
+                        class="botao-lermais">
+                  {{ noticia.expandida ? 'Ler menos' : 'Ler mais →' }}
+                </button>
+              </div>
+            </footer>
+          </article>
+        }
+      </div>
+    }
+  </main>
+
+  <div class="container-botao">
+    <a routerLink="/cadastro" class="botao-avivado">
+      <span class="texto">Ir para Formulário</span>
+    </a>
+  </div>
+
+  <footer class="rodape">
+    <div class="rodape-conteudo">
+      <p>© 2025 - Todos os direitos reservados a Talisson Oliveira</p>
+      <div class="rodape-contatos">
+        <a href="https://wa.me/5584987439243" target="_blank" class="whatsapp-link">
+          <span class="icone-whatsapp">📱</span> (84) 98743-9243
+        </a>
+        <a href="https://www.instagram.com/talisson.oliveira14/" target="_blank" class="instagram-link">
+          <span class="icone-instagram">📸</span> @talisson.oliveira14
+        </a>
+      </div>
+    </div>
+  </footer>
+</div>
