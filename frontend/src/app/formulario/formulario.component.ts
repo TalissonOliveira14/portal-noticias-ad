@@ -10,7 +10,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './formulario.component.html',
-  styleUrls: ['./formulario.component.css']
+  styleUrls: ['./formulario.component.scss']
 })
 export class FormularioComponent {
 
