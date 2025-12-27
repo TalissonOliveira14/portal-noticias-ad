@@ -26,10 +26,7 @@ services:
     build: ./frontend
     container_name: frontend-projeto-forms
     ports:
-      - "4200:4200"
-    volumes:
-      - ./frontend:/app
-    command: npm start -- --host 0.0.0.0
+      - "80:80"  # Porta padrão para o Nginx que está no seu Dockerfile
     depends_on:
       - backend
 
