@@ -1,12 +1,26 @@
 services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb-projeto-forms
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
   backend:
     build: ./backend
     container_name: api-projeto-forms
     ports:
       - "3000:3000"
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/portal_noticias
+      - JWT_SECRET=sua_chave_secreta_aqui
+      - PORT=3000
     volumes:
       - ./backend:/app
     command: npm run dev
+    depends_on:
+      - mongodb
 
   frontend:
     build: ./frontend
@@ -18,3 +32,6 @@ services:
     command: npm start -- --host 0.0.0.0
     depends_on:
       - backend
+
+volumes:
+  mongo-data:
