@@ -8,22 +8,23 @@ web moderno, com API REST, separação de responsabilidades e uso de Docker.
 
 
 ARQUITETURA DO PROJETO
-- Frontend: Angular (Standalone)
-- Backend: Node.js com Express
+- Frontend: Angular 17 (Standalone)
+- Backend Principal: Node.js com Express
+- Microserviço de Auditoria: ASP.NET Core 8 (C#)
 - Banco de Dados: MongoDB
-
   
 TECNOLOGIAS UTILIZADAS
 
-Frontend:
+**Frontend:**
 Angular, TypeScript, HTML5, SCSS
 
-Backend:
-Node.js, Express.js, MongoDB, Mongoose, JWT
+**Backend & Microserviços:**
+- Node.js, Express.js (API Principal)
+- ASP.NET Core 8, C# (Serviço de Auditoria)
+- MongoDB, Mongoose, JWT
 
-Ferramentas:
-Git, GitHub, Docker, NPM, Postman
-FUNCIONALIDADES
+**Ferramentas:**
+Git, GitHub, Docker, Docker Compose, Postman
 
 
 Portal de Notícias:
