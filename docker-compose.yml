@@ -22,6 +22,17 @@ services:
     depends_on:
       - mongodb
 
+  # NOVO: Módulo ASP.NET Core para destacar seu perfil na vaga
+  audit-service:
+    build: ./audit-service
+    container_name: audit-projeto-forms
+    ports:
+      - "5000:5000"
+    environment:
+      - ConnectionStrings__MongoDb=mongodb://mongodb:27017
+    depends_on:
+      - mongodb
+
   frontend:
     build: ./frontend
     container_name: frontend-projeto-forms
