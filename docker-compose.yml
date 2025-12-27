@@ -26,7 +26,7 @@ services:
     build: ./frontend
     container_name: frontend-projeto-forms
     ports:
-      - "80:80"  # Porta padrão para o Nginx que está no seu Dockerfile
+      - "80:80"
     depends_on:
       - backend
 
